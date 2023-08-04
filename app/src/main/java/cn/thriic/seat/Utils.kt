@@ -1,16 +1,10 @@
 package cn.thriic.seat
 
-import android.annotation.SuppressLint
-import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.os.Build
-import android.os.Parcelable
 import android.util.Log
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import androidx.core.net.toFile
 import cn.thriic.seat.data.Seat
 import cn.thriic.seat.ui.screen.setting.SettingState
 import kotlinx.serialization.decodeFromString
@@ -22,7 +16,7 @@ fun Context.share(content: String) {
     val file = File(externalCacheDir, "座位表.seat")
     file.writeText(content)
     if (file.exists()) {
-        val share = Intent(Intent.ACTION_SEND);
+        val share = Intent(Intent.ACTION_SEND)
         val contentUri = FileProvider.getUriForFile(
             this,
             applicationContext.packageName + ".fileprovider",
@@ -31,7 +25,7 @@ fun Context.share(content: String) {
         share.putExtra(Intent.EXTRA_STREAM, contentUri)
         share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         share.type = "text/plain"
-        share.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
+        share.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(Intent.createChooser(share, "分享文件"))
     } else {
         Toast.makeText(this, "分享失败", Toast.LENGTH_SHORT).show()
@@ -64,11 +58,6 @@ fun Intent.readFromShare(context: Context): SettingState? {
         }
     }
     return null
-}
-
-inline fun <reified T : Parcelable> Intent.parcelable(key: String): T? = when {
-    Build.VERSION.SDK_INT >= 33 -> getParcelableExtra(key, T::class.java)
-    else -> @Suppress("DEPRECATION") getParcelableExtra("data")
 }
 
 fun Int.toMatrix(column: Int) = Pair(this / column + 1, this % column + 1)

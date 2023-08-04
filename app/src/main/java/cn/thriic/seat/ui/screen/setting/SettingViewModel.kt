@@ -3,9 +3,6 @@ package cn.thriic.seat.ui.screen.setting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cn.thriic.seat.AppDataStore
-import cn.thriic.seat.ui.screen.seatview.SeatIntent
-import cn.thriic.seat.ui.screen.seatview.SeatUIState
-import cn.thriic.seat.ui.screen.seatview.SeatViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

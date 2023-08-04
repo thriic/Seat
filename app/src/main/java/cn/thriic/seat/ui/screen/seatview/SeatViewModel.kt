@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
@@ -118,14 +117,6 @@ class SeatViewModel @Inject constructor(private val appDataStore: AppDataStore) 
         }
     }
 
-
-    private fun loadSeatingChart(): MutableList<Seat> {
-        val plain =
-            "[{\"type\":\"Occupied\",\"person\":{\"name\":\"陈思瑞\",\"id\":\"2022101063\"}}," +
-                    "{\"type\":\"Unoccupied\"}," +
-                    "{\"type\":\"Disabled\"},{\"type\":\"Occupied\",\"person\":{\"name\":\"文\",\"id\":\"20225646465\"}},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"},{\"type\":\"Unoccupied\"}]"
-        return Json.decodeFromString(string = plain)
-    }
 
     private suspend fun initSeatingChart(size: Size) {
         //if (seatState.value.seats.isNotEmpty()) return

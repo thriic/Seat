@@ -1,6 +1,5 @@
 package cn.thriic.seat
 
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -81,7 +80,5 @@ class AppDataStore @Inject constructor(private val dataStore: DataStore<Preferen
             it[key]
         }.first()
     }
-
-    fun clearData() = runBlocking { dataStore.edit { it.clear() } }
 
 }
